@@ -1,20 +1,16 @@
 package caem_prototype.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
-
-public class Registration implements Serializable {
+public class UserLocation implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5108109609317586171L;
+	private static final long serialVersionUID = 4229005677822671388L;
 	private Integer id;
-	private Event event;
 	private User user;
-	private Date timeOfRegistration;
-	private String status;
+	private Place place;
 
 	public Integer getId() {
 		return this.id;
@@ -22,14 +18,6 @@ public class Registration implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Event getEvent() {
-		return this.event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
 	}
 
 	public User getUser() {
@@ -40,20 +28,12 @@ public class Registration implements Serializable {
 		this.user = user;
 	}
 
-	public Date getTimeOfRegistration() {
-		return this.timeOfRegistration;
+	public Place getPlace() {
+		return this.place;
 	}
 
-	public void setTimeOfRegistration(Date timeOfRegistration) {
-		this.timeOfRegistration = timeOfRegistration;
-	}
-
-	public String getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPlace(Place place) {
+		this.place = place;
 	}
 
 	@Override
@@ -75,7 +55,7 @@ public class Registration implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Registration other = (Registration) obj;
+		UserLocation other = (UserLocation) obj;
 		if (this.id == null) {
 			if (other.id != null) {
 				return false;
@@ -85,8 +65,5 @@ public class Registration implements Serializable {
 		}
 		return true;
 	}
-
-
-
 
 }
