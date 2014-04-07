@@ -1,4 +1,4 @@
-package caem_prototype.namingvalues;
+package caem_prototype.entity;
 
 public class Registration {
 
