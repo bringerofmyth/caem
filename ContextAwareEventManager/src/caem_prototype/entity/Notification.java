@@ -9,6 +9,7 @@ public class Notification implements Serializable {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 8510891620148889979L;
 	private Integer id;
 	private String title;
