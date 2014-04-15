@@ -15,10 +15,8 @@ public class Place implements Serializable {
 	private String position;
 	private String description;
 	private String openHours;
-	private String imageURL1;
-	private String imageURL2;
-	private String imageURL3;
-	private List<String> userPhotos;
+
+	private List<Photo> photos;
 	private List<Tag> tags;
 
 	public Integer getId() {
@@ -77,36 +75,13 @@ public class Place implements Serializable {
 		this.openHours = openHours;
 	}
 
-	public String getImageURL1() {
-		return this.imageURL1;
+
+	public List<Photo> getPhotos() {
+		return this.photos;
 	}
 
-	public void setImageURL1(String imageURL1) {
-		this.imageURL1 = imageURL1;
-	}
-
-	public String getImageURL2() {
-		return this.imageURL2;
-	}
-
-	public void setImageURL2(String imageURL2) {
-		this.imageURL2 = imageURL2;
-	}
-
-	public String getImageURL3() {
-		return this.imageURL3;
-	}
-
-	public void setImageURL3(String imageURL3) {
-		this.imageURL3 = imageURL3;
-	}
-
-	public List<String> getUserPhotos() {
-		return this.userPhotos;
-	}
-
-	public void setUserPhotos(List<String> userPhotos) {
-		this.userPhotos = userPhotos;
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
 	}
 
 	public List<Tag> getTags() {

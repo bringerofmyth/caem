@@ -17,7 +17,7 @@ public class Event implements Serializable {
 	private EventType eventType;
 	private Date startTime;
 	private Date finishTime;
-	private boolean isRecurrent;
+	private Boolean isRecurrent;
 	private Date recurrentUntil;
 
 	private List<Tag> tags;
@@ -62,11 +62,11 @@ public class Event implements Serializable {
 		this.finishTime = finishTime;
 	}
 
-	public boolean isRecurrent() {
+	public Boolean isRecurrent() {
 		return this.isRecurrent;
 	}
 
-	public void setRecurrent(boolean isRecurrent) {
+	public void setRecurrent(Boolean isRecurrent) {
 		this.isRecurrent = isRecurrent;
 	}
 
