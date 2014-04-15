@@ -1,6 +1,7 @@
 package caem_prototype.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserLocation implements Serializable {
 
@@ -11,6 +12,15 @@ public class UserLocation implements Serializable {
 	private Integer id;
 	private User user;
 	private Place place;
+	private Date time;
+
+	public Date getTime() {
+		return this.time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
 
 	public Integer getId() {
 		return this.id;
