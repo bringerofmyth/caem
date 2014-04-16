@@ -1,8 +1,15 @@
 package caem_prototype.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Notification")
 public class Notification implements Serializable {
 
 	//
@@ -14,8 +21,10 @@ public class Notification implements Serializable {
 	private Integer id;
 	private String title;
 	private String description;
-	private List<Tag> tags;
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
@@ -24,6 +33,7 @@ public class Notification implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "title")
 	public String getTitle() {
 		return this.title;
 	}
@@ -32,6 +42,7 @@ public class Notification implements Serializable {
 		this.title = title;
 	}
 
+	@Column(name = "description")
 	public String getDescription() {
 		return this.description;
 	}
@@ -40,13 +51,6 @@ public class Notification implements Serializable {
 		this.description = description;
 	}
 
-	public List<Tag> getTags() {
-		return this.tags;
-	}
-
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-	}
 
 	@Override
 	public int hashCode() {

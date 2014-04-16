@@ -1,8 +1,19 @@
 package caem_prototype.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Place")
 public class Place implements Serializable {
 	/**
 	 * 
@@ -16,9 +27,12 @@ public class Place implements Serializable {
 	private String description;
 	private String openHours;
 
-	private List<Photo> photos;
-	private List<Tag> tags;
+	private Set<Photo> photos = new HashSet<Photo>(0);
+	private Set<Tag> tags = new HashSet<Tag>(0);
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
@@ -27,6 +41,7 @@ public class Place implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "name")
 	public String getName() {
 		return this.name;
 	}
@@ -35,6 +50,7 @@ public class Place implements Serializable {
 		this.name = name;
 	}
 
+	@Column(name = "address")
 	public String getAddress() {
 		return this.address;
 	}
@@ -43,6 +59,7 @@ public class Place implements Serializable {
 		this.address = address;
 	}
 
+	@Column(name = "phone")
 	public String getPhone() {
 		return this.phone;
 	}
@@ -51,6 +68,7 @@ public class Place implements Serializable {
 		this.phone = phone;
 	}
 
+	@Column(name = "position")
 	public String getPosition() {
 		return this.position;
 	}
@@ -59,6 +77,7 @@ public class Place implements Serializable {
 		this.position = position;
 	}
 
+	@Column(name = "description")
 	public String getDescription() {
 		return this.description;
 	}
@@ -67,6 +86,7 @@ public class Place implements Serializable {
 		this.description = description;
 	}
 
+	@Column(name = "openHours")
 	public String getOpenHours() {
 		return this.openHours;
 	}
@@ -75,20 +95,21 @@ public class Place implements Serializable {
 		this.openHours = openHours;
 	}
 
-
-	public List<Photo> getPhotos() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Place")
+	public Set<Photo> getPhotos() {
 		return this.photos;
 	}
 
-	public void setPhotos(List<Photo> photos) {
+	public void setPhotos(Set<Photo> photos) {
 		this.photos = photos;
 	}
 
-	public List<Tag> getTags() {
+
+	public Set<Tag> getTags() {
 		return this.tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 

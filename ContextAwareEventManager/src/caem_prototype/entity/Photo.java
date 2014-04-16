@@ -2,6 +2,16 @@ package caem_prototype.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table(name = "Photo")
 public class Photo implements Serializable {
 
 	/**
@@ -13,7 +23,9 @@ public class Photo implements Serializable {
 	private String diskUrl;
 	private Boolean isOwner;
 
-
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
@@ -22,6 +34,7 @@ public class Photo implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "url")
 	public String getUrl() {
 		return this.url;
 	}
@@ -30,6 +43,7 @@ public class Photo implements Serializable {
 		this.url = url;
 	}
 
+	@Column(name = "disk_url")
 	public String getDiskUrl() {
 		return this.diskUrl;
 	}
@@ -38,6 +52,8 @@ public class Photo implements Serializable {
 		this.diskUrl = diskUrl;
 	}
 
+	@Column(name = "is_owner", columnDefinition = "SMALLINT")
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	public Boolean getIsOwner() {
 		return this.isOwner;
 	}

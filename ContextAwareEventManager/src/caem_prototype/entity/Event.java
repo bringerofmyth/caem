@@ -2,16 +2,38 @@ package caem_prototype.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Type;
 
 import caem_prototype.namingvalues.NamingValues.Role.EventType;
 
+@Entity
+@Table(name = "Event")
 public class Event implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -834852140666678477L;
+
+
 	private Integer id;
 	private String title;
 	private EventType eventType;
@@ -19,9 +41,11 @@ public class Event implements Serializable {
 	private Date finishTime;
 	private Boolean isRecurrent;
 	private Date recurrentUntil;
+	private Set<Tag> tags = new HashSet<Tag>(0);
 
-	private List<Tag> tags;
-
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
@@ -30,6 +54,7 @@ public class Event implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "title")
 	public String getTitle() {
 		return this.title;
 	}
@@ -38,6 +63,8 @@ public class Event implements Serializable {
 		this.title = title;
 	}
 
+	@Column(name = "event_type")
+	@Enumerated(EnumType.ORDINAL)
 	public EventType getEventType() {
 		return this.eventType;
 	}
@@ -46,6 +73,8 @@ public class Event implements Serializable {
 		this.eventType = eventType;
 	}
 
+	@Column(name = "start_time")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getStartTime() {
 		return this.startTime;
 	}
@@ -54,6 +83,8 @@ public class Event implements Serializable {
 		this.startTime = startTime;
 	}
 
+	@Column(name = "finish_time")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getFinishTime() {
 		return this.finishTime;
 	}
@@ -62,6 +93,8 @@ public class Event implements Serializable {
 		this.finishTime = finishTime;
 	}
 
+	@Column(name = "is_recurrent", columnDefinition = "SMALLINT")
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	public Boolean isRecurrent() {
 		return this.isRecurrent;
 	}
@@ -70,6 +103,8 @@ public class Event implements Serializable {
 		this.isRecurrent = isRecurrent;
 	}
 
+	@Column(name = "recurrent_until")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getRecurrentUntil() {
 		return this.recurrentUntil;
 	}
@@ -78,11 +113,14 @@ public class Event implements Serializable {
 		this.recurrentUntil = recurrentUntil;
 	}
 
-	public List<Tag> getTags() {
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinTable(name = "Event_Tag", joinColumns = { @JoinColumn(name = "event_id") }, 
+ inverseJoinColumns = { @JoinColumn(name = "tag_id") })
+	public Set<Tag> getTags() {
 		return this.tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 
