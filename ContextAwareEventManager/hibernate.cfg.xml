@@ -9,12 +9,11 @@
         com.mysql.jdbc.Driver
      </property>
      <property name="hibernate.connection.url">
-          jdbc:mysql://localhost/test </property>
+          jdbc:mysql://localhost/caem_db </property>
      <property name="hibernate.connection.username">
+         root
          <property name="hibernate.connection.password">
-              root123 
+              fec45nac
            </property>
-         
-         <!-- List of XML mapping files -->
-          <mapping resource="Employee.hbm.xml"/>
+
           </session-factory> </hibernate-configuration>
