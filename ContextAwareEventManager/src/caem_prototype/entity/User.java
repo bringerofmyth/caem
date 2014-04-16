@@ -2,7 +2,13 @@ package caem_prototype.entity;
 
 import java.io.Serializable;
 
-import caem_prototype.namingvalues.NamingValues;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import caem_prototype.namingvalues.NamingValues.Role;
 
 public class User implements Serializable {
 
@@ -15,43 +21,58 @@ public class User implements Serializable {
 	private String surname;
 	private String userName;
 	private String password;
-	private NamingValues role;
+	private Role role;
 
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getID() {
 		return this.id;
 	}
 	public void setID(Integer iD) {
 		this.id = iD;
 	}
+
+	@Column(name = "name")
 	public String getName() {
 		return this.name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Column(name = "surname")
 	public String getSurname() {
 		return this.surname;
 	}
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+
+	@Column(name = "username")
 	public String getUserName() {
 		return this.userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	@Column(name = "password")
 	public String getPassword() {
 		return this.password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public NamingValues getRole() {
+
+	@Column(name = "role")
+	@Enumerated(EnumType.STRING)
+	public Role getRole() {
 		return this.role;
 	}
-	public void setRole(NamingValues role) {
+
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

@@ -64,7 +64,7 @@ public class Event implements Serializable {
 	}
 
 	@Column(name = "event_type")
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	public EventType getEventType() {
 		return this.eventType;
 	}
@@ -115,7 +115,7 @@ public class Event implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinTable(name = "Event_Tag", joinColumns = { @JoinColumn(name = "event_id") }, 
- inverseJoinColumns = { @JoinColumn(name = "tag_id") })
+	inverseJoinColumns = { @JoinColumn(name = "tag_id") })
 	public Set<Tag> getTags() {
 		return this.tags;
 	}

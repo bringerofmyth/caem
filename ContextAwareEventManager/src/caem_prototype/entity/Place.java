@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -104,7 +108,8 @@ public class Place implements Serializable {
 		this.photos = photos;
 	}
 
-
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinTable(name = "Place_Tag", joinColumns = { @JoinColumn(name = "place_id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id") })
 	public Set<Tag> getTags() {
 		return this.tags;
 	}

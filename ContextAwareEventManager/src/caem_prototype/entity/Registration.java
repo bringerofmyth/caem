@@ -3,6 +3,14 @@ package caem_prototype.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 public class Registration implements Serializable {
 
@@ -16,6 +24,9 @@ public class Registration implements Serializable {
 	private Date timeOfRegistration;
 	private String status;
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
@@ -24,6 +35,8 @@ public class Registration implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "event")
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Event getEvent() {
 		return this.event;
 	}
@@ -32,6 +45,8 @@ public class Registration implements Serializable {
 		this.event = event;
 	}
 
+	@Column(name = "user")
+	@ManyToOne(cascade = CascadeType.ALL)
 	public User getUser() {
 		return this.user;
 	}
@@ -40,6 +55,8 @@ public class Registration implements Serializable {
 		this.user = user;
 	}
 
+	@Column(name = "time_of_registration")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getTimeOfRegistration() {
 		return this.timeOfRegistration;
 	}
@@ -48,6 +65,7 @@ public class Registration implements Serializable {
 		this.timeOfRegistration = timeOfRegistration;
 	}
 
+	@Column(name = "status")
 	public String getStatus() {
 		return this.status;
 	}

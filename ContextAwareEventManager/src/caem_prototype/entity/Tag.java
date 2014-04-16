@@ -1,6 +1,14 @@
 package caem_prototype.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 public class Tag implements Serializable {
 
@@ -10,15 +18,22 @@ public class Tag implements Serializable {
 	private static final long serialVersionUID = -6794606974735780763L;
 	private Integer id;
 	private String title;
+	private Set<Event> events = new HashSet<Event>(0);
+	private Set<Place> places = new HashSet<Place>(0);
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
+
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	@Column(name = "title")
 	public String getTitle() {
 		return this.title;
 	}
@@ -55,6 +70,24 @@ public class Tag implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+	public Set<Event> getEvents() {
+		return this.events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+	public Set<Place> getPlaces() {
+		return this.places;
+	}
+
+	public void setPlaces(Set<Place> places) {
+		this.places = places;
 	}
 
 

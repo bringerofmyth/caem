@@ -3,6 +3,14 @@ package caem_prototype.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 public class UserLocation implements Serializable {
 
 	/**
@@ -14,14 +22,11 @@ public class UserLocation implements Serializable {
 	private Place place;
 	private Date time;
 
-	public Date getTime() {
-		return this.time;
-	}
 
-	public void setTime(Date time) {
-		this.time = time;
-	}
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
@@ -30,6 +35,18 @@ public class UserLocation implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "time")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getTime() {
+		return this.time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	@Column(name = "user")
+	@ManyToOne(cascade = CascadeType.ALL)
 	public User getUser() {
 		return this.user;
 	}
@@ -38,6 +55,8 @@ public class UserLocation implements Serializable {
 		this.user = user;
 	}
 
+	@Column(name = "place")
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Place getPlace() {
 		return this.place;
 	}
