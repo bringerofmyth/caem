@@ -12,8 +12,10 @@
           jdbc:mysql://localhost/caem_db </property>
      <property name="hibernate.connection.username">
          root
+         </property>
          <property name="hibernate.connection.password">
               fec45nac
            </property>
-
+<!-- <mapping resource="user.hbm.xml"/> -->
+<mapping class="caem_prototype.entity.User"/>
           </session-factory> </hibernate-configuration>
