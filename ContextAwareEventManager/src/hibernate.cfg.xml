@@ -18,4 +18,11 @@
            </property>
 <!-- <mapping resource="user.hbm.xml"/> -->
 <mapping class="caem_prototype.entity.User"/>
+<mapping class="caem_prototype.entity.Event"/>
+<mapping class="caem_prototype.entity.Notification"/>
+<mapping class="caem_prototype.entity.Photo"/>
+<mapping class="caem_prototype.entity.Place"/>
+<mapping class="caem_prototype.entity.Registration"/>
+<mapping class="caem_prototype.entity.Tag"/>
+<mapping class="caem_prototype.entity.UserLocation"/>
           </session-factory> </hibernate-configuration>
