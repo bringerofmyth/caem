@@ -29,6 +29,25 @@ public class UserDao {
 		return u;
 	}
 
+	public User bringUser(User user) {
+		Session session = Dao.createSessionFactory().openSession();
+		User delUser = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delUser = (User) session.get(User.class, user.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delUser;
+	}
 	public List<User> listUsers() {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;

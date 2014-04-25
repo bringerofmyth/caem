@@ -29,6 +29,25 @@ public class TagDao {
 		return u;
 	}
 
+	public Tag bringTag(Tag tag) {
+		Session session = Dao.createSessionFactory().openSession();
+		Tag delTag = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delTag = (Tag) session.get(Tag.class, tag.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delTag;
+	}
 	public List<Tag> listTags() {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;

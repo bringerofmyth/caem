@@ -49,6 +49,25 @@ public class PlaceDao {
 		return places;
 	}
 
+	public Place bringPlace(Place place) {
+		Session session = Dao.createSessionFactory().openSession();
+		Place delPlace = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delPlace = (Place) session.get(Place.class, place.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delPlace;
+	}
 	public Place updatePlace(Place place) {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;

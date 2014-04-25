@@ -80,6 +80,26 @@ public class EventDao {
 
 	}
 
+	public Event bringEvent(Event event) {
+		Session session = Dao.createSessionFactory().openSession();
+		Event delEvent = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delEvent = (Event) session.get(Event.class, event.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delEvent;
+	}
+
 	public Event deleteEvent(Event dEvent) {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;

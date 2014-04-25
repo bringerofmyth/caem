@@ -49,6 +49,26 @@ public class RegistrationDao {
 		return registrations;
 	}
 
+	public Registration bringRegistration(Registration registration) {
+		Session session = Dao.createSessionFactory().openSession();
+		Registration delRegistration = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delRegistration = (Registration) session.get(Registration.class,
+					registration.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delRegistration;
+	}
 	public Registration updateRegistration(Registration registration) {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;

@@ -49,6 +49,26 @@ public class UserLocationDao {
 		return userLocations;
 	}
 
+	public UserLocation bringUserLocation(UserLocation userLocation) {
+		Session session = Dao.createSessionFactory().openSession();
+		UserLocation delUserLocation = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delUserLocation = (UserLocation) session.get(UserLocation.class,
+					userLocation.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delUserLocation;
+	}
 	public UserLocation updateUserLocation(UserLocation userLocation) {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;

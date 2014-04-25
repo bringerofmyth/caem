@@ -70,6 +70,26 @@ public class PhotoDao {
 		return uPhoto;
 	}
 
+	public Photo bringPhoto(Photo photo) {
+		Session session = Dao.createSessionFactory().openSession();
+		Photo delPhoto = null;
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			delPhoto = (Photo) session.get(Photo.class, photo.getId());
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+
+		} finally {
+			session.close();
+		}
+		return delPhoto;
+	}
+
 	private void updateObject(Photo taken, Photo given) {
 		taken.setDiskUrl(given.getDiskUrl());
 		taken.setIsOwner(given.getIsOwner());

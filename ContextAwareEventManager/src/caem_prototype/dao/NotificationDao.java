@@ -27,6 +27,22 @@ public class NotificationDao {
 		return n;
 	}
 
+	public Notification bringNotification(Notification notification) {
+		Session session = Dao.createSessionFactory().openSession();
+		Notification delNotification = null;
+		Transaction tx = null;
+		try {
+			delNotification = (Notification) session.get(Notification.class,
+					notification.getId());
+			tx.commit();
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return delNotification;
+	}
 	public List<Notification> listNotifications() {
 		Session session = Dao.createSessionFactory().openSession();
 		Transaction tx = null;
