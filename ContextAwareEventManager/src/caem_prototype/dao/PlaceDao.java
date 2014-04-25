@@ -1,11 +1,14 @@
 package caem_prototype.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import caem_prototype.entity.Photo;
 import caem_prototype.entity.Place;
 
 public class PlaceDao {
@@ -67,6 +70,30 @@ public class PlaceDao {
 			session.close();
 		}
 		return delPlace;
+	}
+
+	public void fillPhotos(Place place) {
+		Session session = Dao.createSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Query query = session
+					.createQuery("FROM Photo P WHERE P.placeId =:placeId");
+
+			query.setParameter("placeId", place.getId());
+			List results = query.list();
+			tx.commit();
+			place.setPhotos((Set<Photo>) results);
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
 	}
 	public Place updatePlace(Place place) {
 		Session session = Dao.createSessionFactory().openSession();
