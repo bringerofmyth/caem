@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -36,7 +37,7 @@ public class Registration implements Serializable {
 	}
 
 	@Column(name = "event")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Event getEvent() {
 		return this.event;
 	}
@@ -46,7 +47,7 @@ public class Registration implements Serializable {
 	}
 
 	@Column(name = "user")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public User getUser() {
 		return this.user;
 	}

@@ -95,11 +95,11 @@ public class Event implements Serializable {
 
 	@Column(name = "is_recurrent", columnDefinition = "SMALLINT")
 	@Type(type = "org.hibernate.type.NumericBooleanType")
-	public Boolean isRecurrent() {
+	public Boolean getIsRecurrent() {
 		return this.isRecurrent;
 	}
 
-	public void setRecurrent(Boolean isRecurrent) {
+	public void setIsRecurrent(Boolean isRecurrent) {
 		this.isRecurrent = isRecurrent;
 	}
 
@@ -113,7 +113,7 @@ public class Event implements Serializable {
 		this.recurrentUntil = recurrentUntil;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
 	@JoinTable(name = "Event_Tag", joinColumns = { @JoinColumn(name = "event_id") }, 
 	inverseJoinColumns = { @JoinColumn(name = "tag_id") })
 	public Set<Tag> getTags() {

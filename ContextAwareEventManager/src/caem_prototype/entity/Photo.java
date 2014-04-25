@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -22,7 +25,7 @@ public class Photo implements Serializable {
 	private String url;
 	private String diskUrl;
 	private Boolean isOwner;
-
+	private Place place;
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -90,6 +93,16 @@ public class Photo implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "place_id", nullable = false)
+	public Place getPlace() {
+		return this.place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
 	}
 
 }

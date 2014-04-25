@@ -31,7 +31,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	public Integer getID() {
+	public Integer getId() {
 		return this.id;
 	}
 	public void setID(Integer iD) {
@@ -61,6 +61,7 @@ public class User implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 
 	@Column(name = "password")
 	public String getPassword() {

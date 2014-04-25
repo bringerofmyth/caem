@@ -99,7 +99,7 @@ public class Place implements Serializable {
 		this.openHours = openHours;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Place")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
 	public Set<Photo> getPhotos() {
 		return this.photos;
 	}
@@ -108,7 +108,7 @@ public class Place implements Serializable {
 		this.photos = photos;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
 	@JoinTable(name = "Place_Tag", joinColumns = { @JoinColumn(name = "place_id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id") })
 	public Set<Tag> getTags() {
 		return this.tags;

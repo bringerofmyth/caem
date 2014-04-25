@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -46,7 +47,7 @@ public class UserLocation implements Serializable {
 	}
 
 	@Column(name = "user")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public User getUser() {
 		return this.user;
 	}
@@ -56,7 +57,7 @@ public class UserLocation implements Serializable {
 	}
 
 	@Column(name = "place")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public Place getPlace() {
 		return this.place;
 	}
