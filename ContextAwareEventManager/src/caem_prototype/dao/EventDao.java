@@ -35,7 +35,12 @@ public class EventDao {
 		try {
 			tx = session.beginTransaction();
 			events = session.createQuery("FROM Event").list();
-
+			if (events != null && !events.isEmpty()) {
+				for (Event registration : events) {
+					System.out.println(registration.getId() + " "
+							+ registration.getTitle());
+				}
+			}
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null) {

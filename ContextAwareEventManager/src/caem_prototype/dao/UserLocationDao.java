@@ -36,7 +36,12 @@ public class UserLocationDao {
 		try {
 			tx = session.beginTransaction();
 			userLocations = session.createQuery("FROM User_Location").list();
-
+			if (userLocations != null && !userLocations.isEmpty()) {
+				for (UserLocation registration : userLocations) {
+					System.out.println(registration.getId() + " "
+							+ registration.getTime().toString());
+				}
+			}
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null) {

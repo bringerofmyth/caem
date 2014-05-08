@@ -34,7 +34,7 @@ public class User implements Serializable {
 	public Integer getId() {
 		return this.id;
 	}
-	public void setID(Integer iD) {
+	public void setId(Integer iD) {
 		this.id = iD;
 	}
 

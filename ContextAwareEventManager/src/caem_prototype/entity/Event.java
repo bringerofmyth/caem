@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 
-import caem_prototype.namingvalues.NamingValues.Role.EventType;
+import caem_prototype.namingvalues.NamingValues.EventType;
 
 @Entity
 @Table(name = "Event")
@@ -36,6 +36,7 @@ public class Event implements Serializable {
 
 	private Integer id;
 	private String title;
+
 	private EventType eventType;
 	private Date startTime;
 	private Date finishTime;

@@ -90,7 +90,7 @@ public class Place implements Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "openHours")
+	@Column(name = "open_hours")
 	public String getOpenHours() {
 		return this.openHours;
 	}

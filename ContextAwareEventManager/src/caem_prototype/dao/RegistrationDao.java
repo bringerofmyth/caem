@@ -36,6 +36,12 @@ public class RegistrationDao {
 		try {
 			tx = session.beginTransaction();
 			registrations = session.createQuery("FROM Registration").list();
+			if (registrations != null && !registrations.isEmpty()) {
+				for (Registration registration : registrations) {
+					System.out.println(registration.getId() + " "
+							+ registration.getStatus());
+				}
+			}
 
 			tx.commit();
 		} catch (HibernateException e) {
