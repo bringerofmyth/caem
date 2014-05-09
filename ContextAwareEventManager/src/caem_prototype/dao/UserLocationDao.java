@@ -35,7 +35,7 @@ public class UserLocationDao {
 		List<UserLocation> userLocations = null;
 		try {
 			tx = session.beginTransaction();
-			userLocations = session.createQuery("FROM User_Location").list();
+			userLocations = session.createQuery("FROM UserLocation").list();
 			if (userLocations != null && !userLocations.isEmpty()) {
 				for (UserLocation registration : userLocations) {
 					System.out.println(registration.getId() + " "

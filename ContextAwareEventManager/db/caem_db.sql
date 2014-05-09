@@ -48,7 +48,7 @@ create table Place
 	phone 			VARCHAR(20),
 	description 	VARCHAR(250),
 	open_hours 		VARCHAR(50),
-
+	position 		VARCHAR(50),
 	PRIMARY KEY (id) 
 );
 create table Place_Tag

@@ -5,14 +5,19 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
+@Entity
+@Table(name = "Registration")
 public class Registration implements Serializable {
 
 	/**
@@ -36,7 +41,7 @@ public class Registration implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "event")
+	@JoinColumn(name = "event")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Event getEvent() {
 		return this.event;
@@ -46,7 +51,7 @@ public class Registration implements Serializable {
 		this.event = event;
 	}
 
-	@Column(name = "user")
+	@JoinColumn(name = "user")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public User getUser() {
 		return this.user;

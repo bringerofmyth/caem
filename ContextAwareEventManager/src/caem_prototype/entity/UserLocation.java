@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,7 +51,7 @@ public class UserLocation implements Serializable {
 		this.time = time;
 	}
 
-	@Column(name = "user")
+	@JoinColumn(name = "user")
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public User getUser() {
 		return this.user;
@@ -60,7 +61,7 @@ public class UserLocation implements Serializable {
 		this.user = user;
 	}
 
-	@Column(name = "place")
+	@JoinColumn(name = "place")
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public Place getPlace() {
 		return this.place;
